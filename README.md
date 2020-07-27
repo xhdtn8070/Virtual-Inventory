@@ -4,7 +4,8 @@ Spigot-API 기반으로 작성되어 Spigot, Paper 버킷에서 사용가능하�
 Plugin에서 사용되는 메시지를 사용자가 지정할 수 있도록 개발되었다.<br/>
 Logging 등 관리 측면의 기능 개발은 추후 진행될 예정이다.<br/>
 
-##사용법 Usage
+## 사용법 Usage
+```
 	 1. /plugins 아래에 virtual-inventory-{version}.jar 위치 
 	 2. /서버 동작
 	 3. /plugins 아래에 다음과 같은 항목 자동 생성 됨
@@ -12,23 +13,25 @@ Logging 등 관리 측면의 기능 개발은 추후 진행될 예정이다.<br/
 		- VirturalInventoryPlugin/config.yml
 		- VirturalInventoryPlugin/message.yml
 	 4. config.yml, message.yml을 변경하고 커맨드에서 /reload confirm 입력하면 설정 적용됨.
-	
-##권한 Permission
+```	
+## 권한 Permission
+```
     - vc.admin
 	* luckPerm Plugin을 이용하여 '/lp user KOO_MA permission set vi.admin true' 커맨드 적용해주면 권한 등록완료
 	* luckPerm Plugin을 사용하지 않고 permission 파일을 수정하여도 상관없음
-
-##설정 Config
+```
+## 설정 Config
+```
 	- 아래 파일 내부에 설명 첨부.
 	- /plugins/VirturalInventoryPlugin/config.yml
 	- /plugins/VirturalInventoryPlugin/message.yml
-	
+```	
 <hr>
 
-####사용된 API : Spigot-1.16.1
-####테스트 완료 버전 : 1.12.2 , 1.16.1 
+#### 사용된 API : Spigot-1.16.1
+#### 테스트 완료 버전 : 1.12.2 , 1.16.1 
 
-##커맨드 Command
+## 커맨드 Command
 ```bash
 /vi
 	- version 설명
