@@ -1,4 +1,4 @@
-package tab;
+package org.tikim.minecraft.plugin.tab;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -7,11 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.tikim.minecraft.plugin.VirtualInventoryPlugin;
-import org.tikim.minecraft.plugin.manager.VirtualInventoryManager;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ViTab implements TabCompleter {
@@ -88,8 +85,6 @@ public class ViTab implements TabCompleter {
                 || args[0].equalsIgnoreCase("open"))){
             if(this.virtualInventoryPlugin.viCommand.isPlayer(sender)) {
                 Player player = (Player) sender;
-//                List<String> list = this.virtualInventoryPlugin.virtualInventoryManager.getList(player);
-
                 for(String string :this.virtualInventoryPlugin.virtualInventoryManager.getList(player)){
                     if(string.startsWith(args[1])){
                         result.add(string);

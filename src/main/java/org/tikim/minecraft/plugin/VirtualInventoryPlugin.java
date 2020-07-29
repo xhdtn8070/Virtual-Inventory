@@ -4,14 +4,13 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.CharSequenceReader;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.tikim.minecraft.plugin.command.ViCommand;
 import org.tikim.minecraft.plugin.manager.VirtualInventoryManager;
 import org.tikim.minecraft.plugin.manager.YmlDataManager;
-import tab.ViTab;
+import org.tikim.minecraft.plugin.tab.ViTab;
 
 import java.io.*;
 
