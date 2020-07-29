@@ -1,25 +1,40 @@
 package org.tikim.minecraft.plugin;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.input.CharSequenceReader;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.tikim.minecraft.plugin.command.ViCommand;
 import org.tikim.minecraft.plugin.manager.VirtualInventoryManager;
 import org.tikim.minecraft.plugin.manager.YmlDataManager;
+import tab.ViTab;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public final class VirtualInventoryPlugin extends JavaPlugin {
     public YmlDataManager messageConfig;
     public VirtualInventoryManager virtualInventoryManager;
+    public FileConfiguration tabConfiguration;
+    public ViCommand viCommand;
+    public ViTab viTab;
     @Override
     public void onEnable() {
 
 
         getConfig().options().configuration();
         saveDefaultConfig();
+
         messageConfig = new YmlDataManager(this,"message");
+        try {
+            tabConfiguration = YamlConfiguration.loadConfiguration(getReaderFromStream(this.getResource("tab.yml")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&',this.messageConfig.getConfig().getString("message.inventory.start")));
         this.virtualInventoryManager = new VirtualInventoryManager(this,new File(getDataFolder(), "inventory"));
@@ -30,7 +45,11 @@ public final class VirtualInventoryPlugin extends JavaPlugin {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        getCommand("vi").setExecutor(new ViCommand(this.virtualInventoryManager));
+
+        viCommand = new ViCommand(this);
+        viTab = new ViTab(this);
+        this.getCommand("vi").setExecutor(viCommand);
+        this.getCommand("vi").setTabCompleter(viTab);
         repeatSaveVirtualInventory();
 
 
@@ -60,5 +79,14 @@ public final class VirtualInventoryPlugin extends JavaPlugin {
             }, 0L, second*20L); //0 Tick initial delay, 20 Tick (1 Second) between repeats
 
         }
+    }
+
+    public Reader getReaderFromStream(InputStream initialStream)
+            throws IOException {
+
+        byte[] buffer = IOUtils.toByteArray(initialStream);
+
+        Reader targetReader = new CharSequenceReader(new String(buffer));
+        return targetReader;
     }
 }
