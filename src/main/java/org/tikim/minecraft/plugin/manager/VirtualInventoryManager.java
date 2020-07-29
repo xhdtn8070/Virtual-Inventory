@@ -222,7 +222,7 @@ public class VirtualInventoryManager {
 
         List<String> list = getList(player);
         if(list==null){
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',this.virtualInventoryPlugin.messageConfig.getConfig().getString("message.inventory.no-exists")));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',this.virtualInventoryPlugin.messageConfig.getConfig().getString("message.inventory.no-exists").replace("#{inventoryName}",inventoryName)));
             return;
         }
         int index = -1;
@@ -234,7 +234,7 @@ public class VirtualInventoryManager {
             }
         }
         if(index==-1){
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',this.virtualInventoryPlugin.messageConfig.getConfig().getString("message.inventory.no-exists")));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',this.virtualInventoryPlugin.messageConfig.getConfig().getString("message.inventory.no-exists").replace("#{inventoryName}",inventoryName)));
             return;
         }
         VirtualInventory virtualInventory = getInventroy(player, inventoryName);

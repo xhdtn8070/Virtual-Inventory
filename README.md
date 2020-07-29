@@ -27,7 +27,7 @@ Logging 등 관리 측면의 기능 개발은 추후 진행될 예정이다.<br/
 	- /plugins/VirturalInventoryPlugin/message.yml
 ```	
 <hr>
-
+#### 버전 : 1.1
 #### 사용된 API : Spigot-1.16.1
 #### 테스트 완료 버전 : 1.12.2 , 1.16.1 
 
@@ -65,14 +65,14 @@ Logging 등 관리 측면의 기능 개발은 추후 진행될 예정이다.<br/
 /vi {open or o} {#InventoryName}
 	- 자신의 {#InventoryName}이라는 가상 인벤토리를 오픈한다.
 
-/vi {open or o} {#userName} {#InventoryName}
+/vi {openother or oo} {#userName} {#InventoryName}
 	- 다른 사람의 가상 인벤토리를 오픈한다 확인할 수 있음
 	- permission
 		- vc.admin
 
 /vi {remove or rm} {#InventoryName}
 	
-/vi {remove or rm} {#userName} {#InventoryName}
+/vi {removeother or rmo} {#userName} {#InventoryName}
 	- 다른 사람의 인벤토리를 삭제한다.
 	- permission
 		- vc.admin
@@ -82,7 +82,11 @@ Logging 등 관리 측면의 기능 개발은 추후 진행될 예정이다.<br/
 	- permission
 		- vc.admin
 ```
-
+## 변경점
+```bash
+    1.0.1 : other 명령어 변경, Tab Complete
+```
+   
 ## 삭제 Delete
 
 ```bash
