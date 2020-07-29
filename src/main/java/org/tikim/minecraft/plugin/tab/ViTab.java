@@ -196,11 +196,4 @@ public class ViTab implements TabCompleter {
         }
         return result;
     }
-    private boolean checkPermission(CommandSender sender,String permission){
-        if(sender.hasPermission(permission)){
-            return true;
-        }
-        sender.sendMessage(ChatColor.GREEN+"You do not have \""+ChatColor.YELLOW+ permission + ChatColor.GREEN + "\" permission to run that command");
-        return false;
-    }
 }

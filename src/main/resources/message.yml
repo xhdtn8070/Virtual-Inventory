@@ -32,3 +32,4 @@ message:
     no-exists-online: "&c해당 플레이어가 온라인에 존재하지 않습니다."
     no-exists: "&c존재하지 않는 플레이어입니다."
     non-player: "&c플레이어가 아닙니다. 플레이어로 입력해주시기 바랍니다."
+    no-allowed-permission: "&aYou do not have \"&e#{permission}&a\" permission to run that command"

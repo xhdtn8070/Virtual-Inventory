@@ -21,8 +21,3 @@ tab:
     - "removeother"
     - "rmo"
     - "saveAll"
-  info:
-    - "&aVirtualInventory-1.0\n\t가상 인벤토리 플러그인"
-    - "&a이 플러그인은 &9가상 창고&a를 제공하는 플러그인이다."
-    - "&a퍼미션\n&e\t-vc.admin"
-    - "&e참조 : &6https://github.com/xhdtn8070/Virtual-Inventory"

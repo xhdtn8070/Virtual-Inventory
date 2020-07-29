@@ -205,7 +205,8 @@ public class ViCommand implements CommandExecutor {
         if(sender.hasPermission(permission)){
             return true;
         }
-        sender.sendMessage(ChatColor.GREEN+"You do not have \""+ChatColor.YELLOW+ permission + ChatColor.GREEN + "\" permission to run that command");
+        String message = this.virtualInventoryPlugin.virtualInventoryManager.getVirtualInventoryPlugin().messageConfig.getConfig().getString("message.player.no-allowed-permission");
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&',message.replace("#{permission}",permission)));
         return false;
     }
     public boolean checkPlayer(CommandSender sender, Player player){
