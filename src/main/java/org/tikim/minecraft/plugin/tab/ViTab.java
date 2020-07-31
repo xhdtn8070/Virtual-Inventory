@@ -122,7 +122,7 @@ public class ViTab implements TabCompleter {
 
             if(this.virtualInventoryPlugin.viCommand.isPlayer(sender)) {
 
-                Player targetPlayer = Bukkit.getPlayer(args[2]);
+                Player targetPlayer = Bukkit.getPlayer(args[1]);
                 if(!this.virtualInventoryPlugin.viCommand.checkPlayer(sender,targetPlayer)){
                     return result;
                 }
