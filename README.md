@@ -22,7 +22,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![version](https://img.shields.io/badge/version-1.1-brightgreen.svg)](https://semver.org)
+[![version](https://img.shields.io/badge/version-1.1.1-brightgreen.svg)](https://semver.org)
 [![Minecraft_Version](https://img.shields.io/badge/Minecraft_Version-1.12.2~1.16.1-green.svg)](https://semver.org)
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -97,6 +97,7 @@ To get a local copy up and running follow these simple steps.
 ### Download Jar
 * [Version-1.0](https://static-sample.tikim.org/Virtual-Inventory/virtual-inventory-1.0.jar)
 * [Version-1.1](https://static-sample.tikim.org/Virtual-Inventory/virtual-inventory-1.1.jar)
+* [Version-1.1.1](https://static-sample.tikim.org/Virtual-Inventory/virtual-inventory-1.1.1.jar)
 
 ### Installation
 설치
@@ -201,7 +202,9 @@ mvn clean package jar:jar -DskipTests
 ## Change
 변경점
 ```bash
+    1.0 : -
     1.1 : other 명령어 변경, Tab Complete
+    1.1.1 : /vi oo {Player} {Inventory} 명령어의 Tab Complete 버그 픽스 
 ```
 삭제
 ```bash
