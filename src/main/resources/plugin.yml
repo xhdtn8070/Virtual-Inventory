@@ -1,7 +1,7 @@
 name: VirturalInventoryPlugin
 version: ${project.version}
 main: org.tikim.minecraft.plugin.VirtualInventoryPlugin
-api-version: 1.16
+api-version: 1.17
 authors: [tikim]
 description: 가상 인벤토리를 위한 플러그인
 website: github.com/xhdtn8070

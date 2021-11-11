@@ -6,8 +6,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.tikim.minecraft.plugin.command.ViCommand;
+import org.tikim.minecraft.plugin.listener.Spawn;
 import org.tikim.minecraft.plugin.manager.VirtualInventoryManager;
 import org.tikim.minecraft.plugin.manager.YmlDataManager;
 import org.tikim.minecraft.plugin.tab.ViTab;
@@ -50,7 +52,7 @@ public final class VirtualInventoryPlugin extends JavaPlugin {
         this.getCommand("vi").setExecutor(viCommand);
         this.getCommand("vi").setTabCompleter(viTab);
         repeatSaveVirtualInventory();
-
+        this.getServer().getPluginManager().registerEvents(new Spawn(this,this.getLogger()),this);
 
 
     }

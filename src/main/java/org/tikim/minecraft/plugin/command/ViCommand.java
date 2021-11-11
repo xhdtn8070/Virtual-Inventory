@@ -171,7 +171,7 @@ public class ViCommand implements CommandExecutor {
     }
 
     private void getInit(CommandSender sender) {
-        String init = this.virtualInventoryPlugin.virtualInventoryManager.getVirtualInventoryPlugin().messageConfig.getConfig().getString("init");
+        String init = this.virtualInventoryPlugin.messageConfig.getConfig().getString("init");
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&',init.replace("{#version}",this.virtualInventoryPlugin.virtualInventoryManager.getVirtualInventoryPlugin().getDescription().getVersion())));
     }
 
