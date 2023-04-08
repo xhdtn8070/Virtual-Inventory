@@ -1,7 +1,6 @@
 package org.tikim.minecraft.plugin.tab;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -25,7 +24,7 @@ public class ViTab implements TabCompleter {
         List<String> result=new ArrayList<>();
 
         if(args.length==1 ){
-            for(String string :this.virtualInventoryPlugin.tabConfiguration.getStringList("tab.init")){
+            for(String string :this.virtualInventoryPlugin.tabConfig.getTabs()){
                 if(string.toLowerCase().startsWith(args[0])){
                     result.add(string);
                 }

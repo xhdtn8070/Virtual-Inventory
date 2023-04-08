@@ -1,43 +1,47 @@
 package org.tikim.minecraft.plugin;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.CharSequenceReader;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.mineacademy.fo.Common;
+import org.mineacademy.fo.plugin.SimplePlugin;
 import org.tikim.minecraft.plugin.command.ViCommand;
+import org.tikim.minecraft.plugin.config.MessageConfig;
+import org.tikim.minecraft.plugin.config.PluginConfig;
+import org.tikim.minecraft.plugin.config.TabConfig;
 import org.tikim.minecraft.plugin.listener.Spawn;
 import org.tikim.minecraft.plugin.manager.VirtualInventoryManager;
-import org.tikim.minecraft.plugin.manager.YmlDataManager;
-import org.tikim.minecraft.plugin.tab.ViTab;
 
-import java.io.*;
+public final class VirtualInventoryPlugin extends SimplePlugin {
 
-public final class VirtualInventoryPlugin extends JavaPlugin {
-    public YmlDataManager messageConfig;
+    public PluginConfig pluginConfig;
+
+    public MessageConfig messageConfig;
+
+    public TabConfig tabConfig;
+
     public VirtualInventoryManager virtualInventoryManager;
-    public FileConfiguration tabConfiguration;
     public ViCommand viCommand;
-    public ViTab viTab;
+//    public ViTab viTab;
     @Override
-    public void onEnable() {
+    protected void onPluginStart() {
+        Common.log(Common.consoleLine());
+        Common.log("&aVirtualInventory Enabling....");
+        Common.log("&aThis is a private library developed by Tony for projects");
+        Common.log("&c&lYou are not allowed to redistribute or claim this resource as your own product.");
+        Common.log(Common.consoleLine());
 
+        pluginConfig = PluginConfig.getInstance();
+        messageConfig = MessageConfig.getInstance();
+        tabConfig = TabConfig.getInstance();
 
-        getConfig().options().configuration();
-        saveDefaultConfig();
+        Common.log(this.messageConfig.getInventory().getStart());
 
-        messageConfig = new YmlDataManager(this,"message");
-        try {
-            tabConfiguration = YamlConfiguration.loadConfiguration(getReaderFromStream(this.getResource("tab.yml")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&',this.messageConfig.getConfig().getString("message.inventory.start")));
         this.virtualInventoryManager = new VirtualInventoryManager(this,new File(getDataFolder(), "inventory"));
         try{
             virtualInventoryManager.load();
@@ -47,27 +51,38 @@ public final class VirtualInventoryPlugin extends JavaPlugin {
             e.printStackTrace();
         }
 
-        viCommand = new ViCommand(this);
-        viTab = new ViTab(this);
-        this.getCommand("vi").setExecutor(viCommand);
-        this.getCommand("vi").setTabCompleter(viTab);
+        registerCommand(new ViCommand());
+//        viTab = new ViTab(this);
+//        this.getCommand("vi").setTabCompleter(viTab);
         repeatSaveVirtualInventory();
-        this.getServer().getPluginManager().registerEvents(new Spawn(this,this.getLogger()),this);
+//        this.getServer().getPluginManager().registerEvents(new Spawn(this,this.getLogger()),this);
 
 
     }
     @Override
-    public void onDisable() {
-        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&',this.messageConfig.getConfig().getString("message.inventory.stop")));
+    protected void onPluginStop() {
+        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&',this.messageConfig.getInventory().getStop()));
         try {
             this.virtualInventoryManager.saveAll(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    @Override
+    protected void onPluginLoad() {
+
+    }
+
+    @Override
+    protected void onPluginReload() {
+
+    }
+
     private void repeatSaveVirtualInventory(){
-        int second = this.getConfig().getInt("auto-save");
-        if(second!=0){
+        boolean autoSave = this.pluginConfig.isAutoSave();
+        int second = this.pluginConfig.getAutoSaveTime();
+        if(autoSave && second!=0){
             Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
                 @Override
                 public void run() {
@@ -89,5 +104,14 @@ public final class VirtualInventoryPlugin extends JavaPlugin {
 
         Reader targetReader = new CharSequenceReader(new String(buffer));
         return targetReader;
+    }
+
+    /**
+     * Return the instance of this plugin, which simply refers to a static field already created for you in SimplePlugin but casts it to your specific plugin instance for your convenience.
+     *
+     * @return
+     */
+    public static SimplePlugin getInstance() {
+        return (VirtualInventoryPlugin) SimplePlugin.getInstance();
     }
 }
