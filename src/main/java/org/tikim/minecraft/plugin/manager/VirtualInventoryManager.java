@@ -110,7 +110,7 @@ public class VirtualInventoryManager {
                  */
                 if (loadMessaging) {
                     String message = loadMessage.replace("#{fileName}", file.getName());
-                    Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+                    Common.log(message);
                 }
 
                 String[] property = file.getName().split("\\.");

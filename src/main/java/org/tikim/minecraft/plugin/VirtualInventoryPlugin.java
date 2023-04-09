@@ -27,13 +27,13 @@ public final class VirtualInventoryPlugin extends SimplePlugin {
 
     public VirtualInventoryManager virtualInventoryManager;
     public ViCommand viCommand;
-//    public ViTab viTab;
+
     @Override
     protected void onPluginStart() {
         Common.log(Common.consoleLine());
-        Common.log("&aVirtualInventory Enabling....");
-        Common.log("&aThis is a private library developed by Tony for projects");
-        Common.log("&c&lYou are not allowed to redistribute or claim this resource as your own product.");
+        Common.log(ChatColor.GREEN + "VirtualInventory Enabling....");
+        Common.log(ChatColor.GREEN + "This is a private library developed by Tony for projects");
+        Common.log(ChatColor.RED + "You are not allowed to redistribute or claim this resource as your own product.");
         Common.log(Common.consoleLine());
 
         pluginConfig = PluginConfig.getInstance();
@@ -52,8 +52,6 @@ public final class VirtualInventoryPlugin extends SimplePlugin {
         }
 
         registerCommand(new ViCommand());
-//        viTab = new ViTab(this);
-//        this.getCommand("vi").setTabCompleter(viTab);
         repeatSaveVirtualInventory();
 //        this.getServer().getPluginManager().registerEvents(new Spawn(this,this.getLogger()),this);
 
@@ -61,7 +59,7 @@ public final class VirtualInventoryPlugin extends SimplePlugin {
     }
     @Override
     protected void onPluginStop() {
-        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&',this.messageConfig.getInventory().getStop()));
+        Common.log(this.messageConfig.getInventory().getStop());
         try {
             this.virtualInventoryManager.saveAll(true);
         } catch (IOException e) {

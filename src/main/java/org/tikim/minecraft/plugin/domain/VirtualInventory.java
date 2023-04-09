@@ -1,7 +1,11 @@
 package org.tikim.minecraft.plugin.domain;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.inventory.Inventory;
 
+@Getter
+@Setter
 public class VirtualInventory {
     private Inventory inventory;
     private boolean isModify;
@@ -14,35 +18,4 @@ public class VirtualInventory {
         this.count=0;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public Inventory getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
-    }
-
-    public boolean isModify() {
-        return isModify;
-    }
-
-    public void setModify(boolean modify) {
-        isModify = modify;
-    }
-
-    public boolean isDelete() {
-        return isDelete;
-    }
-
-    public void setDelete(boolean delete) {
-        isDelete = delete;
-    }
 }
